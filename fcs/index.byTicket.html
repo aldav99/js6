@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Control System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="flight-list-block">
+        <h2>List of flights</h2>
+        <template id="flight-list-item-template">
+            <li>
+                <b data-field="name"></b>
+                <span data-field="count"></span> /
+                <span data-field="seats"></span>
+            </li>
+        </template>
+        <ul id="flight-list">
+        </ul>
+    </div>
+
+    <div id="e-buyTicket-block">
+        <h2>
+            <e-buyTicket></e-buyTicket>
+        </h2>
+        <form id="e-buyTicket-form">
+            <input name="flight" placeholder="Please enter flight">
+            <input name="fullname" placeholder="Please enter your full name">
+            <input name="type" placeholder="Type of seat: 0 - standart; 1 - business">
+            <button type="submit">BuyTicket</button>
+        </form>
+    </div>
+
+    <script src="core/main.js"></script>
+    <script src="core/utils.js"></script>
+    <script src="core/add-flight.js"></script>
+    <script src="core/buy-ticket.js"></script>
+    <script src="core/e-registration.js"></script>
+    <script src="core/flight-report.js"></script>
+
+    <script src="utils.js"></script>
+    <script src="display-flights.js"></script>
+    <script src="flight-details.js"></script>
+    <script src="buyTicket.form.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

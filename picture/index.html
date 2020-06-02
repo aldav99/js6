@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>events</title>
+    <style>
+        table {
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+            /* max-width: 1000px; */
+        }
+
+        table tr td {
+            width: 10px;
+            height: 10px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table cellspacing="0" cellpadding="0">
+        <tr>
+            <td data-code="hello"></td>
+            <td data-code="world"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <table id="palette" cellspacing="0" cellpadding="0">
+        <tr>
+            <td style="background-color: forestgreen;"></td>
+            <td style="background-color: gold;"></td>
+            <td style="background-color: orchid;"></td>
+            <td class="active" style="background-color: red;"></td>
+        </tr>
+    </table>
+
+
+    <script>
+        'use strict';
+        const table = document.getElementsByTagName('table')[0];
+
+        const palette = document.getElementById('palette');
+
+        table.addEventListener('click', click);
+        table.addEventListener('contextmenu', magnify);
+
+        palette.addEventListener('click', selectColor);
+
+        function selectColor() {
+            let element = palette.getElementsByClassName("active")[0];
+            console.log(element);
+            if (element) { element.classList.remove("active"); }
+
+            event.target.classList.add("active");
+        }
+
+        function magnify(event) {
+
+            console.log(event.type, event.target.tagName);
+
+            if (event.target.tagName !== 'TD')
+                return;
+
+
+            let tdElements = table.querySelectorAll("td");
+
+            tdElements.forEach(element => {
+                if (element.style.width == "10px") {
+                    element.style.width = "30px";
+                    element.style.height = "30px";
+                } else {
+                    element.style.width = "10px";
+                    element.style.height = "10px";
+                }
+            });
+
+        }
+
+        function setColor() {
+            let element = palette.getElementsByClassName("active")[0];
+            if (element) return element.style.backgroundColor;
+        }
+
+        /**
+         * @param {MouseEvent} event
+         */
+        function click(event) {
+            console.log(event.type, event.target);
+
+            if (event.target.tagName !== 'TD')
+                return;
+
+
+            if (event.shiftKey)
+                event.target.style.backgroundColor = 'transparent';
+            else if (event.ctrlKey)
+                event.target.style.backgroundColor = 'blue';
+            else
+                event.target.style.backgroundColor = setColor();
+
+            // console.log(this);
+            // console.log(event.offsetX, event.offsetY)
+            console.log(event.target.dataset.code);
+        }
+    </script>
+</body>
+
+</html>
