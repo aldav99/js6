@@ -18,7 +18,7 @@ function submitHandler(event) {
     };
 
     try {
-        let buyTime = formData.buyTime.getTime();
+        const buyTime = formData.buyTime.getTime();
         let ticket = buyTicket(world.flights, formData.flight, buyTime, formData.fullName, formData.type)
 
         alert('You successfully bought seat №: ' + ticket.seat);

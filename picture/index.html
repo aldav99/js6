@@ -111,7 +111,7 @@
 
         }
 
-        function setColor() {
+        function getActiveColor() {
             let element = palette.getElementsByClassName("active")[0];
             if (element) return element.style.backgroundColor;
         }
@@ -131,7 +131,7 @@
             else if (event.ctrlKey)
                 event.target.style.backgroundColor = 'blue';
             else
-                event.target.style.backgroundColor = setColor();
+                event.target.style.backgroundColor = getActiveColor();
 
             // console.log(this);
             // console.log(event.offsetX, event.offsetY)
